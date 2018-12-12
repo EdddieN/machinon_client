@@ -60,7 +60,7 @@ sudo apt-get install nginx
 ## Install PHP
 
 ```
-sudo apt-get install php-cli php-common php-fpm php-cgi php-pear php-mcrypt php-apc memcached
+sudo apt-get install php-cli php-common php-fpm php-cgi php-pear php-mcrypt php-curl memcached
 ```
 
 This set of packages should avoid installing Apache web server as dependency, which we won't need.
