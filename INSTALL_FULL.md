@@ -1,3 +1,4 @@
+
 # Installing Machinon - The complete guide
 
 This guide merges the three guides for rpi-setup, machinon_client and agent_machinon packages.
@@ -26,29 +27,27 @@ sudo raspi-config
 0. Update raspi-config tool (8th option)
 1. Set new password for user 'pi', chose anything you want.
 2. Network options
-2.1 Set hostname to something like ```machinonNN```
+* Set hostname to something like ```machinonNN```
 I used ```machinon-test```
-2.2 DISABLE predictable network interface names
-This is **needed for agent-machinon**
-2.3 You could use WiFi,  agent-machinon will use eth0 interface mac_address, but it is irrelevant.
+* DISABLE predictable network interface names. This is **needed for agent-machinon**
+* You could use WiFi,  agent-machinon will use eth0 interface mac_address, but it is irrelevant.
 3. Boot options : 
-	Boot on console (WITHOUT autologin)
+* Boot on console (WITHOUT autologin)
 4. Localization options :
-4.1 Timezone
-	Choose "None of the above", then  UTC
-	4.2 Locales
-	Usually choosing EN_GB@UTC-8 is fine, but in my case Raspbian detected my system is Spanish so I had to enable ALSO the ES_ES@UTC-8 to avoid a bunch of Locale error messages they were happening.
-	I then chose the EN_GB as default.	
+* Timezone
+	* Choose "None of the above", then  UTC
+* Locales
+	* Usually choosing EN_GB@UTC-8 is fine-
+> Jose : In my case Raspbian detected my system is Spanish so I had to enable ALSO the ES_ES@UTC-8 to avoid a bunch of Locale error messages they were happening.
+I then chose the EN_GB as default.	
 5. Interfacing options (based on Matthew's instructions)
-	5.1. Enable SPI
-5.2.  Enable I2C
-5.3.  Enable Serial (but do NOT enable login shell over serial) 
-5.6 Enable remote command line through SSH 
-Not required but for testing purposes I did it
+* Enable SPI
+*  Enable I2C
+*  Enable Serial (but do NOT enable login shell over serial) 
+* Enable remote command line through SSH. Not required but for testing purposes I did it
 6. Advanced options :
-6.1.  Expand filesystem to fill card
-If you installed Raspbian using NOOBS this step is NOT required
-6.2.  Change GPU memory to 16 MB
+*  Expand filesystem to fill card. If you installed Raspbian using NOOBS this step is NOT required
+*  Change GPU memory to 16 MB
 
 
 ### Updating the SO
@@ -86,8 +85,14 @@ enable_uart=1  #for Pi3 and Jessie or later
 
 I think this is absolutely NOT necessary because all routers have DHCP enabled  (usually). But just in case I followed up the instructions
 
-Edit  `/etc/dhcpcd.conf`  and uncomment or add these lines (change to suit):
+Edit  `/etc/dhcpcd.conf`  
     
+```
+nano /etc/dhcpcd.conf
+```
+
+And uncomment or add these lines (change to suit your network settings):
+
 ```
 interface eth0
 static ip_address=192.168.1.15/24
