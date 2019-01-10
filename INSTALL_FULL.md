@@ -20,7 +20,7 @@ https://www.raspberrypi.org/downloads/noobs/
 #### Using Raspbian image
 
 1. Download the Raspbian Stretch Lite OS .zip image from the Raspbian site.
-2. "Burn" the image into SD card using one of the various tools available on internet. For OSX I used balenaEtcher, which can burn direct .zip images.
+2. "Burn" the image into SD card using one of the various tools available on internet. For OSX I used `balenaEtcher`, which can burn direct .zip images.
 3. Eject SD card safely, put it into Raspberry, attach keyboard, network cable, monitor, etc... and boot.
 
 
@@ -37,27 +37,31 @@ sudo raspi-config
 
 0. Update raspi-config tool (8th option)
 1. Set new password for user 'pi', chose anything you want.
-2. Network options
-* Set hostname to something like ```machinonNN```
-I used ```machinon-test```
-* DISABLE predictable network interface names. This is **needed for agent-machinon**
-* You could use WiFi,  agent-machinon will use eth0 interface mac_address, but it is irrelevant.
+2. Network options :
+* Set hostname to something like `machinonNN` where NN is a number.
+* Do not enable predictable network interface names.
+* You can enable WiFi and connect to internet through it**
+
+** agent-machinon uses the eth0 interface MAC Address as Re:Machinon's *MUID* (Machinon Unit ID). So, even if you are using WiFI to access internet with the Raspberry, don't disable eth0 interface.
+
 3. Boot options : 
 * Boot on console (WITHOUT autologin)
 4. Localization options :
 * Timezone
 	* Choose "None of the above", then  UTC
 * Locales
-	* Usually choosing EN_GB@UTC-8 is fine-
-> Jose : In my case Raspbian detected my system is Spanish so I had to enable ALSO the ES_ES@UTC-8 to avoid a bunch of Locale error messages they were happening.
-I then chose the EN_GB as default.	
+	* Usually choosing EN_GB@UTC-8 is fine. Raspbian detects your location so, if you use another locale, install it to avoid Raspbian dropping Locale error messages. 
 5. Interfacing options (based on Matthew's instructions)
 * Enable SPI
 *  Enable I2C
-*  Enable Serial (but do NOT enable login shell over serial) 
-* Enable remote command line through SSH. Not required but for testing purposes I did it
+*  Enable Serial 
+	* Do NOT enable login shell over serial.
+* Enable remote command line through SSH. 
+	* Not required but it allows to do the rest of the setup through SSH, so you can detach the Raspberry from monitor/keyboard/etc...
 6. Advanced options :
-*  Expand filesystem to fill card. If you installed Raspbian using NOOBS this step is NOT required
+*  Expand filesystem to fill card. 
+	* If you installed Raspbian using NOOBS this step is not required.
+	* Latest Raspbian image also performs this procedure during the first boot.
 *  Change GPU memory to 16 MB
 
 
@@ -71,29 +75,24 @@ sudo apt-get upgrade
 sudo apt-get dist-upgrade
 sudo apt-get clean
 ```
-Reboot to apply all previous changes
-
-```
-sudo reboot
-```
 
 ### Adding system overlays
 
 Edit  `/boot/config.txt`  and add the following lines 
 enable_uart is probably already in the file due to previous raspi-config setup
     
- ```
+```
 dtoverlay=sc16is752-spi1,24
 dtoverlay=i2c-rtc,mcp7941x
 dtoverlay=pi3-act-led, gpio=26
-# for Pi3 only
+# Change BT to mini-uart (Pi3 only)
 dtoverlay=pi3-miniuart-bt
-# optional to disable wifi
+# Optionally disable wifi
 dtoverlay=pi3-disable-wifi
-# to disable bluetooth
+# Optionally disable bluetooth
 dtoverlay=pi3-disable-bt
-# for Pi3 and Jessie or later
-enable_uart=1  
+# Enable UART Pi3 and Jessie or later (can also be done in raspi-config)
+enable_uart=1
 ```
 
 ### Setting IP address
@@ -117,8 +116,11 @@ static domain_name_servers=192.168.1.1
     
 Alternatively, edit the "fall back to static IP" section to make the Pi fall back to that static IP if DHCP fails.
     
-Reboot
+Reboot to apply all previous changes
 
+```
+sudo reboot
+```
 
 ### Disable bluetooth service from starting 
 
