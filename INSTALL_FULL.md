@@ -1,9 +1,13 @@
-
 # Installing Machinon - The complete guide
 
 This guide merges the three guides for rpi-setup, machinon_client and agent_machinon packages.
 
 ### Install Raspbian
+
+NOOBS is a very simple way to create an SD with Raspberry linux image from any OS (windows, osx, etc...) as it only implies downloading a zip file and unzipping it into a fresh formatted SD card. 
+However, if you plan to clone your SD card after you finish this installation (using `dd` or any other SD cloning software), to put it into multiple Raspberries, creating a traditional Raspbian image card is recommended.
+
+#### Using Noobs
 
 1. Download NOOBS installer from 
 https://www.raspberrypi.org/downloads/noobs/
@@ -12,6 +16,13 @@ https://www.raspberrypi.org/downloads/noobs/
 4. Eject SD card safely, put it into Raspberry, attach keyboard, network cable, monitor, etc... and boot.
 5. A very easy installation wizard will appear, choose to install Raspbian Lite and follow instructions. You may need to configure your WiFi if not using cabled networking with DHCP. 
 6. The installation takes some minutes depending of your network connection.
+
+#### Using Raspbian image
+
+1. Download the Raspbian Stretch Lite OS .zip image from the Raspbian site.
+2. "Burn" the image into SD card using one of the various tools available on internet. For OSX I used balenaEtcher, which can burn direct .zip images.
+3. Eject SD card safely, put it into Raspberry, attach keyboard, network cable, monitor, etc... and boot.
+
 
 ### Post installation setup:
 
@@ -383,48 +394,49 @@ A public key is needed to let the app open the link with the  Re:Machinon server
 ### Copy the contents of the key I've sent you in this file and set the  right permissions
 
 ```
-sudo nano /etc/ssh/remachinon_test_aws.pem 
-sudo chmod 400 /etc/ssh/remachinon_test_aws.pem
+sudo nano /etc/ssh/remachinon_rsa_key.pem 
+sudo chmod 400 /etc/ssh/remachinon_rsa_key.pem
 ```
 
-### Preload the Re:Machinon server key in the known_hosts file
+### Preload the Re:Machinon server signature
 
 > Jose : This step is VERY IMPORTANT!!! Don't change anything of this command, it must go exactly as it is!
 
 ```
+sudo ssh-keygen -R re.machinon.com 
 ssh-keyscan re.machinon.com | sudo tee -a /etc/ssh/ssh_known_hosts
 ```
-
-***IMPORTANT*** Keep in mind now we're changing of servers  (AWS -> Bytemark) so we will have to edit this file in the future manually to update records as the SSH will loudly complain as soon as the digital server signature changes (which is totally okay).
 
 # Setup agent_machinon
 ***LOGIC ENERGY LTD. EMPLOYEES ONLY***
 
-The app provides a sample .env.example file as template but we will create a new .env file configured to use the AWS re.machinon.com site.
+The app provides a sample .env.example file as template but we will create a new .env file configured to use the re.machinon.com site.
 
 ```
 sudo nano .env
 ```
 Put on it the following contents, save and exit:
 
+**In the MQTT_SERVER_PASSWORD line you must write the password I sent by email**
+
 ```
 # MQTT Broker definitions  
-MQTT_SERVER_HOST=dev.machinon.com  
+MQTT_SERVER_HOST=re.machinon.com  
 MQTT_SERVER_PORT=1883  
 MQTT_SERVER_PORT_SSL=8883  
 MQTT_SERVER_USE_SSL=True  
-MQTT_SERVER_USERNAME=machinon  
-MQTT_SERVER_PASSWORD=<sent by email>  
+MQTT_SERVER_USERNAME=remachinon  
+MQTT_SERVER_PASSWORD=password  
 MQTT_CERTS_PATH=/etc/ssl/certs  
   
 # MQTT client and topic definitions  
-MQTT_CLIENT_ID_PREFIX=machinon2_  
+MQTT_CLIENT_ID_PREFIX=agent_machinon:  
 MQTT_TOPIC_PREFIX_REMOTECONNECT=remote  
   
 # SSH Tunnel details  
 SSH_HOSTNAME=re.machinon.com  
-SSH_USERNAME=ec2-user
-SSH_KEY_FILE=/etc/ssh/remachinon_test_aws.pem  
+SSH_USERNAME=remachinon
+SSH_KEY_FILE=/etc/ssh/remachinon_rsa_key.pem  
   
 # Remachinon API base URL  
 REMACHINON_API_URL=http://${SSH_HOSTNAME}/api/v1  
@@ -432,9 +444,6 @@ REMACHINON_API_URL=http://${SSH_HOSTNAME}/api/v1
 # script user must have write access to this file or folder  
 LOG_FILE=tunnel-agent.log
 ```
-
-> Jose : Attention to the MQTT_SERVER_PASSWORD line!!!
-> You must put the right password there (I sent it by email).
 
 ### Installing agent_machinon as service
 
