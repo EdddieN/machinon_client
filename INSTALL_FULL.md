@@ -311,6 +311,16 @@ server {
         add_header Front-End-Https on;
         proxy_redirect off;
     }
+    # Proxying to the machinon_config app (default port 81)
+    location /config/ {
+        auth_request /auth.php;
+        proxy_pass http://127.0.0.1:81/config/;
+        proxy_set_header Host $host ;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        add_header Front-End-Https on;
+        proxy_redirect off;
+    }
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
         fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
