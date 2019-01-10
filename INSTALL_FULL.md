@@ -86,10 +86,14 @@ enable_uart is probably already in the file due to previous raspi-config setup
 dtoverlay=sc16is752-spi1,24
 dtoverlay=i2c-rtc,mcp7941x
 dtoverlay=pi3-act-led, gpio=26
-dtoverlay=pi3-miniuart-bt  #for Pi3 only
-dtoverlay=pi3-disable-wifi #optional to disable wifi
-dtoverlay=pi3-disable-bt #to disable bluetooth
-enable_uart=1  #for Pi3 and Jessie or later
+# for Pi3 only
+dtoverlay=pi3-miniuart-bt
+# optional to disable wifi
+dtoverlay=pi3-disable-wifi
+# to disable bluetooth
+dtoverlay=pi3-disable-bt
+# for Pi3 and Jessie or later
+enable_uart=1  
 ```
 
 ### Setting IP address
