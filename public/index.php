@@ -38,6 +38,7 @@ session_start();
                 </form>
                 <?php else: ?>
                     <a class="btn btn-lg btn-primary btn-block" href="domoticz/" target="_blank">Domoticz</a>
+                    <a class="btn btn-lg btn-primary btn-block" href="config/" target="_blank">Machinon setup</a>
                     <a class="btn btn-lg btn-primary btn-block" href="logout.php">Logout</a>
                 <?php endif; ?>
                 <div class="text-center">
