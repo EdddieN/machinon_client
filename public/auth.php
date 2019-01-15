@@ -27,7 +27,7 @@ if (isset($_SESSION['credentials'])) {
     // Direct request -> add a redirect header to go index page.
     // Otherwise (nginx auth or ajax auth) just need response code.
     if ($access_token) {
-        @header("Location: /domoticz/");
+        @header("Location: machinon/");
     }
     exit(http_response_code(200));
 } else {
@@ -87,7 +87,7 @@ if (!empty($response_token)) {
     // If auth was called from LeSENSE tunnel, redirect to index
     // Otherwise (nginx auth or ajax auth) just return response code
     if ($access_token) {
-        @header("Location: /domoticz/");
+        @header("Location: machinon/");
     }
     exit(http_response_code(200));
 } else {
