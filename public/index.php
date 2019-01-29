@@ -9,20 +9,64 @@ session_start();
 ?>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #eee;
+        }
+
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin .checkbox {
+            font-weight: normal;
+        }
+        .form-signin .form-control {
+            position: relative;
+            height: auto;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <div class="text-center">
-                    <p><img src="images/logomachinon.png" alt="Machinon" /></p>
-                </div>
+            <div class="col-sm-4 text-center">
+                    <p><img src="http://re.machinon.com/images/machinon_logo.png" alt="Machinon" style="width:175px"/></p>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 text-center">
                 <?php if (!isset($_SESSION['credentials'])) : ?>
                 <form class="form-signin" method="POST" action="auth.php">
                     <div class="alert alert-danger" role="alert" style="display:none">Login error</div>
@@ -37,8 +81,8 @@ session_start();
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </form>
                 <?php else: ?>
-                    <a class="btn btn-lg btn-primary btn-block" href="machinon/" target="_blank">Domoticz</a>
-                    <a class="btn btn-lg btn-primary btn-block" href="config/" target="_blank">Machinon setup</a>
+                    <a class="btn btn-lg btn-primary btn-block" href="machinon/">Domoticz</a>
+                    <a class="btn btn-lg btn-primary btn-block" href="./?f=main">Machinon setup</a>
                     <a class="btn btn-lg btn-primary btn-block" href="logout.php">Logout</a>
                 <?php endif; ?>
             </div>
