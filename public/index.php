@@ -37,16 +37,10 @@ session_start();
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </form>
                 <?php else: ?>
-                    <a class="btn btn-lg btn-primary btn-block" href="domoticz/" target="_blank">Domoticz</a>
+                    <a class="btn btn-lg btn-primary btn-block" href="machinon/" target="_blank">Domoticz</a>
                     <a class="btn btn-lg btn-primary btn-block" href="config/" target="_blank">Machinon setup</a>
                     <a class="btn btn-lg btn-primary btn-block" href="logout.php">Logout</a>
                 <?php endif; ?>
-                <div class="text-center">
-                    <p><small>Powered by<br/>
-                        <a href="https://www.logicenergy.com" target="_blank">
-                            <img src="images/logole.png" alt="Logic Energy" /></a><br/>
-                        &copy;<?php echo date("Y",time()); ?> Logic Energy Ltd.<br/>All rights reserved</small></p>
-                </div>
             </div>
             <div class="col-sm-4"></div>
         </div>
