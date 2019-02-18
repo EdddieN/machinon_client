@@ -9,5 +9,5 @@ https://github.com/EdddieN/remachinon
 
 # License
 
-This software is licensed under the [MIT License](http://opensource.org/licenses/MIT)
+This software is licensed under the [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.html)
 Check LICENSE file for full details.
