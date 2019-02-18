@@ -6,3 +6,8 @@ It is a simple PHP application that will provide a  authentication system once a
 
 In order to install, go check the Machinon Complete Install Guide
 https://github.com/EdddieN/remachinon
+
+# License
+
+This software is licensed under the [MIT License](http://opensource.org/licenses/MIT)
+Check LICENSE file for full details.
