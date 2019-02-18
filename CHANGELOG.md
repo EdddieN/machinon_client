@@ -1,26 +1,6 @@
-##  (2019-02-18)
+##  v1.0-beta (2019-02-18)
 
-* Create CHANGELOG ([78b6025](https://github.com/EdddieN/machinon_client/commit/78b6025))
-* Create INSTALL_FULL.md ([d79eb8f](https://github.com/EdddieN/machinon_client/commit/d79eb8f))
-* Create LICENSE ([81f0a84](https://github.com/EdddieN/machinon_client/commit/81f0a84))
-* Delete INSTALL_FULL.md ([919ec1f](https://github.com/EdddieN/machinon_client/commit/919ec1f))
-* First commit ([4c8eb7e](https://github.com/EdddieN/machinon_client/commit/4c8eb7e))
 * Fixed auth redirections ([dc5f698](https://github.com/EdddieN/machinon_client/commit/dc5f698))
 * Fixed header redirections on auth.php to go directly to Domoticz ([4467187](https://github.com/EdddieN/machinon_client/commit/4467187))
 * Fixed menu paths ([0da82d0](https://github.com/EdddieN/machinon_client/commit/0da82d0))
 * Removed Logic footer ([9fcf7c3](https://github.com/EdddieN/machinon_client/commit/9fcf7c3))
-* Update INSTALL_FULL.md ([dd40005](https://github.com/EdddieN/machinon_client/commit/dd40005))
-* Update INSTALL_FULL.md ([64b2c10](https://github.com/EdddieN/machinon_client/commit/64b2c10))
-* Update INSTALL_FULL.md ([112aa6d](https://github.com/EdddieN/machinon_client/commit/112aa6d))
-* Update INSTALL_FULL.md ([e176b60](https://github.com/EdddieN/machinon_client/commit/e176b60))
-* Update INSTALL_FULL.md ([3d05e99](https://github.com/EdddieN/machinon_client/commit/3d05e99))
-* Update INSTALL_FULL.md ([9508498](https://github.com/EdddieN/machinon_client/commit/9508498))
-* Update LICENSE ([282c78f](https://github.com/EdddieN/machinon_client/commit/282c78f))
-* Update README.md ([ce1fbac](https://github.com/EdddieN/machinon_client/commit/ce1fbac))
-* Update README.md ([c1d6508](https://github.com/EdddieN/machinon_client/commit/c1d6508))
-* Update README.md ([7f131c7](https://github.com/EdddieN/machinon_client/commit/7f131c7))
-* Update README.md ([47660aa](https://github.com/EdddieN/machinon_client/commit/47660aa))
-* Update README.md ([64832e7](https://github.com/EdddieN/machinon_client/commit/64832e7))
-
-
-
